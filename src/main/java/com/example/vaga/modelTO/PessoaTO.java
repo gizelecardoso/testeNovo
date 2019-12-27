@@ -1,5 +1,8 @@
 package com.example.vaga.modelTO;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PessoaTO {
 
 	private Integer id;

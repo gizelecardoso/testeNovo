@@ -28,6 +28,7 @@ public class Pessoa {
 	@Column(name = "NIVEL")
 	private Integer nivel;
 	
+	
 	public Integer getId() {
 		return id;
 	}

@@ -67,10 +67,10 @@ public class PessoaService {
 	
 	public PessoaTO updateOrCreatePerson (PessoaTO personTO) {
 		
-		Optional<Pessoa> person = repository.findById(personTO.getId());
+		if(personTO.getId() != null) {
 		
-		if(person.isPresent()) {
-		
+			Optional<Pessoa> person = repository.findById(personTO.getId());
+			
 			Pessoa oldPerson = new Pessoa();
 			BeanUtils.copyProperties(person, oldPerson);
 			
