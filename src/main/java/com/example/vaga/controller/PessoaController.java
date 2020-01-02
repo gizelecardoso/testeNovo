@@ -23,7 +23,6 @@ public class PessoaController {
 
 		PessoaTO auxPerson = service.updateOrCreatePerson(personTO);
 		
-		
 		return new ResponseEntity<PessoaTO>(auxPerson, HttpStatus.OK);
 	}
 	
