@@ -1,6 +1,7 @@
 package com.example.vaga.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,13 +21,10 @@ public class VagaController {
 	@PostMapping("/vagas")
 	public ResponseEntity<VagaTO> create (@RequestBody VagaTO vagasTO) {
 
-		VagaTO auxVaga = service.updateOrCreateVaga(vagasTO);
-		
-		if(!auxVaga.equals(null)) {
-			return ResponseEntity.status(201).build();
-		} else {
-			return ResponseEntity.status(400).build();
-		}
+		VagaTO auxVaga = service.createVaga(vagasTO);
+
+		return new ResponseEntity<VagaTO>(auxVaga, HttpStatus.OK);
+
 	}
 
 }
