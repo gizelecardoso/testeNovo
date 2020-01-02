@@ -1,6 +1,7 @@
 package com.example.vaga.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.vaga.modelTO.CandidaturaTO;
 import com.example.vaga.service.CandidaturaService;
 
+import javassist.NotFoundException;
+
 @RestController
 @RequestMapping("/v1")
 public class CandidaturaController {
@@ -18,15 +21,12 @@ public class CandidaturaController {
 	private CandidaturaService service;
 	
 	@PostMapping("/candidaturas")
-	public ResponseEntity<CandidaturaTO> create (@RequestBody CandidaturaTO candidaturaTO) {
+	public ResponseEntity<CandidaturaTO> create (@RequestBody CandidaturaTO candidaturaTO) throws NotFoundException {
 
 		CandidaturaTO auxCandidatura = service.create(candidaturaTO);
-		
-		if(!auxCandidatura.equals(null)) {
-			return ResponseEntity.status(201).build();
-		} else {
-			return ResponseEntity.status(400).build();
-		}
+
+		return new ResponseEntity<CandidaturaTO>(auxCandidatura, HttpStatus.OK);
+
 	}
 	
 }
